@@ -1,0 +1,181 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type CardsAllParts {
+  component String
+  id        String
+  name      String
+  object    String
+  type_line String
+  uri       String
+}
+
+type CardsCardFaces {
+  artist          String?
+  artist_id       String?
+  color_indicator String[]
+  colors          String[]
+  flavor_text     String?
+  illustration_id String?
+  image_uris      CardsCardFacesImageUris?
+  loyalty         String?
+  mana_cost       String
+  name            String
+  object          String
+  oracle_text     String
+  power           String?
+  toughness       String?
+  type_line       String?
+  watermark       String?
+}
+
+type CardsCardFacesImageUris {
+  art_crop    String
+  border_crop String
+  large       String
+  normal      String
+  png         String
+  small       String
+}
+
+type CardsImageUris {
+  art_crop    String
+  border_crop String
+  large       String
+  normal      String
+  png         String
+  small       String
+}
+
+type CardsLegalities {
+  alchemy         String
+  brawl           String
+  commander       String
+  duel            String
+  explorer        String
+  future          String
+  gladiator       String
+  historic        String
+  legacy          String
+  modern          String
+  oathbreaker     String
+  oldschool       String
+  pauper          String
+  paupercommander String
+  penny           String
+  pioneer         String
+  predh           String
+  premodern       String
+  standard        String
+  standardbrawl   String
+  timeless        String
+  vintage         String
+}
+
+type CardsPreview {
+  previewed_at String
+  source       String
+  source_uri   String
+}
+
+type CardsPrices {
+  eur        String?
+  eur_foil   String?
+  tix        String?
+  usd        String?
+  usd_etched String?
+  usd_foil   String?
+}
+
+model Cards {
+  id                  String           @id @default(auto()) @map("_id") @db.ObjectId
+  all_parts           CardsAllParts[]
+  arena_id            Int?
+  artist              String
+  artist_ids          String[]
+  attraction_lights   Int[]
+  booster             Boolean
+  border_color        String
+  card_back_id        String?
+  card_faces          CardsCardFaces[]
+  cardmarket_id       Int?
+  cmc                 Int
+  collector_number    String
+  color_identity      String[]
+  color_indicator     String[]
+  colors              String[]
+  content_warning     Boolean?
+  digital             Boolean
+  edhrec_rank         Int?
+  finishes            String[]
+  flavor_name         String?
+  flavor_text         String?
+  foil                Boolean
+  frame               String
+  frame_effects       String[]
+  full_art            Boolean
+  games               String[]
+  hand_modifier       String?
+  highres_image       Boolean
+  id_                 String           @map("id")
+  illustration_id     String?
+  image_status        String
+  image_uris          CardsImageUris?
+  keywords            String[]
+  lang                String
+  layout              String
+  legalities          CardsLegalities
+  life_modifier       String?
+  loyalty             String?
+  mana_cost           String?
+  mtgo_foil_id        Int?
+  mtgo_id             Int?
+  multiverse_ids      Int[]
+  name                String
+  nonfoil             Boolean
+  object              String
+  oracle_id           String
+  oracle_text         String?
+  oversized           Boolean
+  penny_rank          Int?
+  power               String?
+  preview             CardsPreview?
+  prices              CardsPrices
+  printed_name        String?
+  printed_text        String?
+  printed_type_line   String?
+  prints_search_uri   String
+  produced_mana       String[]
+  promo               Boolean
+  promo_types         String[]
+  rarity              String
+  released_at         String
+  reprint             Boolean
+  reserved            Boolean
+  rulings_uri         String
+  scryfall_set_uri    String
+  scryfall_uri        String
+  security_stamp      String?
+  set                 String
+  set_id              String
+  set_name            String
+  set_search_uri      String
+  set_type            String
+  set_uri             String
+  story_spotlight     Boolean
+  tcgplayer_etched_id Int?
+  tcgplayer_id        Int?
+  textless            Boolean
+  toughness           String?
+  type_line           String
+  uri                 String
+  variation           Boolean
+  variation_of        String?
+  watermark           String?
+}
